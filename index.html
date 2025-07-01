@@ -46,5 +46,56 @@
     <footer>
         <p>&copy; 2025 InsightMatrix. All rights reserved.</p>
     </footer>
+<script>
+  // Typing effect for "InsightMatrix"
+  const titleEl = document.querySelector('.logo span');
+  const text = 'InsightMatrix';
+  let i = 0;
+  titleEl.textContent = '';
+  const typeInterval = setInterval(() => {
+    titleEl.textContent += text[i];
+    i++;
+    if (i === text.length) clearInterval(typeInterval);
+  }, 100);
+
+  // Reveal cards on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.add('hidden');
+    observer.observe(card);
+  });
+
+  // Scroll to top button
+  const scrollBtn = document.createElement('button');
+  scrollBtn.textContent = '↑';
+  scrollBtn.style.position = 'fixed';
+  scrollBtn.style.bottom = '20px';
+  scrollBtn.style.right = '20px';
+  scrollBtn.style.padding = '10px';
+  scrollBtn.style.border = 'none';
+  scrollBtn.style.borderRadius = '50%';
+  scrollBtn.style.background = '#00ffe5';
+  scrollBtn.style.color = '#000';
+  scrollBtn.style.fontWeight = 'bold';
+  scrollBtn.style.cursor = 'pointer';
+  scrollBtn.style.display = 'none';
+  document.body.appendChild(scrollBtn);
+
+  window.addEventListener('scroll', () => {
+    scrollBtn.style.display = window.scrollY > 200 ? 'block' : 'none';
+  });
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
 </body>
 </html>
