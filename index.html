@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Globe.gl + Three.js -->
+  <!-- Three.js and Globe.gl -->
   <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
   <script src="https://unpkg.com/globe.gl"></script>
 </head>
@@ -64,7 +64,7 @@
   </footer>
 
   <script>
-    // Typing logo text
+    // Typing animation for logo
     const titleEl = document.querySelector('.logo span');
     const text = 'InsightMatrix';
     let i = 0;
@@ -75,7 +75,7 @@
       if (i === text.length) clearInterval(typeInterval);
     }, 100);
 
-    // Card reveal animation
+    // Card fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -89,7 +89,7 @@
       observer.observe(card);
     });
 
-    // Scroll-to-top button
+    // Scroll to top button
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
     Object.assign(scrollBtn.style, {
@@ -115,20 +115,29 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Globe initialization
     window.addEventListener('DOMContentLoaded', () => {
       const container = document.querySelector('.card-container');
       setTimeout(() => container.classList.add('animated'), 500);
 
-      // Initialize globe
       const world = Globe()(document.getElementById('globeViz'))
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg')
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
         .backgroundColor('rgba(0,0,0,0)')
         .showAtmosphere(true)
         .atmosphereColor('#00ffe5')
-        .atmosphereAltitude(0.2)
+        .atmosphereAltitude(0.25)
         .width(350)
         .height(350)
         .pointOfView({ lat: 20, lng: 80, altitude: 2 }, 0);
+
+      // Auto-rotate globe
+      function animate() {
+        requestAnimationFrame(animate);
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 0.8;
+        world.controls().update();
+      }
+      animate();
     });
   </script>
 </body>
