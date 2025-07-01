@@ -75,12 +75,8 @@ main {
 .globe-3d-container {
   width: 350px;
   height: 350px;
-  position: relative;
-}
-
-#globeViz {
-  width: 100%;
-  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .about-section {
@@ -136,3 +132,16 @@ footer {
   padding: 1rem;
   font-size: 0.9rem;
 }
+
+/* Animations */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
