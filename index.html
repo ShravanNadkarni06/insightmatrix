@@ -27,7 +27,7 @@
     </header>
 
     <main>
-  <div class="card-container">
+  <div class="card-container loading">
     <div class="card">
       <h2>🧠 Data Science & AI</h2>
       <p>Smart insights with Python & ML...</p>
@@ -42,6 +42,7 @@
     </div>
   </div>
 </main>
+
 
 
     <footer>
@@ -96,6 +97,15 @@
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+  // Animate layout switch from column to row
+  window.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.card-container');
+    setTimeout(() => {
+      container.classList.remove('loading');
+      container.classList.add('animated');
+    }, 500); // delay animation
+  });
+
 </script>
 
 </body>
