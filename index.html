@@ -6,6 +6,10 @@
   <title>InsightMatrix</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Globe.gl + Three.js -->
+  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
 </head>
 <body>
   <header>
@@ -28,15 +32,7 @@
 
   <main>
     <section class="intro-section">
-      <div class="globe-3d-container">
-        <iframe
-          src="https://earth.nullschool.net/embed.html"
-          frameborder="0"
-          width="300"
-          height="300"
-          style="border-radius: 50%; overflow: hidden"
-        ></iframe>
-      </div>
+      <div id="globeViz" class="globe-3d-container"></div>
       <div class="about-section">
         <h2>About InsightMatrix</h2>
         <p>
@@ -68,6 +64,7 @@
   </footer>
 
   <script>
+    // Typing logo text
     const titleEl = document.querySelector('.logo span');
     const text = 'InsightMatrix';
     let i = 0;
@@ -78,6 +75,7 @@
       if (i === text.length) clearInterval(typeInterval);
     }, 100);
 
+    // Card reveal animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -91,19 +89,22 @@
       observer.observe(card);
     });
 
+    // Scroll-to-top button
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
-    scrollBtn.style.position = 'fixed';
-    scrollBtn.style.bottom = '20px';
-    scrollBtn.style.right = '20px';
-    scrollBtn.style.padding = '10px';
-    scrollBtn.style.border = 'none';
-    scrollBtn.style.borderRadius = '50%';
-    scrollBtn.style.background = '#00ffe5';
-    scrollBtn.style.color = '#000';
-    scrollBtn.style.fontWeight = 'bold';
-    scrollBtn.style.cursor = 'pointer';
-    scrollBtn.style.display = 'none';
+    Object.assign(scrollBtn.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      padding: '10px',
+      border: 'none',
+      borderRadius: '50%',
+      background: '#00ffe5',
+      color: '#000',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      display: 'none'
+    });
     document.body.appendChild(scrollBtn);
 
     window.addEventListener('scroll', () => {
@@ -116,9 +117,18 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const container = document.querySelector('.card-container');
-      setTimeout(() => {
-        container.classList.add('animated');
-      }, 500);
+      setTimeout(() => container.classList.add('animated'), 500);
+
+      // Initialize globe
+      const world = Globe()(document.getElementById('globeViz'))
+        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg')
+        .backgroundColor('rgba(0,0,0,0)')
+        .showAtmosphere(true)
+        .atmosphereColor('#00ffe5')
+        .atmosphereAltitude(0.2)
+        .width(350)
+        .height(350)
+        .pointOfView({ lat: 20, lng: 80, altitude: 2 }, 0);
     });
   </script>
 </body>
