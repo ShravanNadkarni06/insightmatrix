@@ -107,19 +107,23 @@ footer {
 /* Container layout for cards side by side */
 .card-container {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
+  flex-direction: column; /* starts in column layout */
+  align-items: center;
   gap: 2rem;
   padding-top: 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.card-container.animated {
+  flex-direction: row; /* animates to row layout */
+  justify-content: center;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Entry animation: upward + fade in */
-.card {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: riseIn 1s ease forwards;
-}
 
 .card:nth-child(1) {
   animation-delay: 0.2s;
