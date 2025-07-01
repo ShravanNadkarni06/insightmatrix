@@ -1,145 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InsightMatrix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-      .intro-section {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        padding: 3rem 2rem 1rem;
-        text-align: left;
-      }
-
-      .intro-image {
-        max-width: 400px;
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0, 255, 229, 0.4);
-      }
-
-      .intro-text {
-        max-width: 500px;
-        font-size: 1rem;
-        color: #ddd;
-      }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InsightMatrix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo" class="logo-icon" style="height: 40px; width: 40px;">
-            <span>InsightMatrix</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Cybersecurity</a></li>
-                <li><a href="#">Resources</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" class="logo-icon" style="height: 40px; width: 40px;">
+      <span>InsightMatrix</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Cybersecurity</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-   <main>
-  <section class="intro-section">
-    <div class="cyber-globe-container">
-      <div class="globe">
-        <div class="dot"></div>
-        <div class="ring ring1"></div>
-        <div class="ring ring2"></div>
-        <div class="ring ring3"></div>
+  <main>
+    <section class="intro-section">
+      <div class="globe-3d-container">
+        <div id="globeViz"></div>
+      </div>
+      <div class="about-section">
+        <h2>About InsightMatrix</h2>
+        <p>InsightMatrix is your portal into the worlds of AI, Web Development, and Cybersecurity — combining cutting-edge knowledge with practical skills to power the future.</p>
+      </div>
+    </section>
+
+    <div class="card-container animated">
+      <div class="card">
+        <h2>🧠 Data Science & AI</h2>
+        <p>Smart insights with Python & ML...</p>
+      </div>
+      <div class="card">
+        <h2>🔐 Cybersecurity</h2>
+        <p>Ethical hacking, malware analysis...</p>
+      </div>
+      <div class="card">
+        <h2>💻 Web Development</h2>
+        <p>HTML5, CSS3, JS, React, APIs...</p>
       </div>
     </div>
-    <div class="about-section">
-      <h2>About InsightMatrix</h2>
-      <p>InsightMatrix is your portal into the worlds of AI, Web Development, and Cybersecurity — combining cutting-edge knowledge with practical skills to power the future.</p>
-    </div>
-  </section>
+  </main>
 
-  <div class="card-container animated">
-    <div class="card">
-      <h2>🧠 Data Science & AI</h2>
-      <p>Smart insights with Python & ML...</p>
-    </div>
-    <div class="card">
-      <h2>🔐 Cybersecurity</h2>
-      <p>Ethical hacking, malware analysis...</p>
-    </div>
-    <div class="card">
-      <h2>💻 Web Development</h2>
-      <p>HTML5, CSS3, JS, React, APIs...</p>
-    </div>
-  </div>
-</main>
+  <footer>
+    <p>&copy; 2025 InsightMatrix. All rights reserved.</p>
+  </footer>
 
-
-    <footer>
-        <p>&copy; 2025 InsightMatrix. All rights reserved.</p>
-    </footer>
-
-<script>
-  const titleEl = document.querySelector('.logo span');
-  const text = 'InsightMatrix';
-  let i = 0;
-  titleEl.textContent = '';
-  const typeInterval = setInterval(() => {
-    titleEl.textContent += text[i];
-    i++;
-    if (i === text.length) clearInterval(typeInterval);
-  }, 100);
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.card').forEach(card => {
-    card.classList.add('hidden');
-    observer.observe(card);
-  });
-
-  const scrollBtn = document.createElement('button');
-  scrollBtn.textContent = '↑';
-  scrollBtn.style.position = 'fixed';
-  scrollBtn.style.bottom = '20px';
-  scrollBtn.style.right = '20px';
-  scrollBtn.style.padding = '10px';
-  scrollBtn.style.border = 'none';
-  scrollBtn.style.borderRadius = '50%';
-  scrollBtn.style.background = '#00ffe5';
-  scrollBtn.style.color = '#000';
-  scrollBtn.style.fontWeight = 'bold';
-  scrollBtn.style.cursor = 'pointer';
-  scrollBtn.style.display = 'none';
-  document.body.appendChild(scrollBtn);
-
-  window.addEventListener('scroll', () => {
-    scrollBtn.style.display = window.scrollY > 200 ? 'block' : 'none';
-  });
-
-  scrollBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.card-container');
-    setTimeout(() => {
-      container.classList.add('animated');
-    }, 500);
-  });
-</script>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script src="script.js"></script>
 </body>
 </html>
