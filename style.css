@@ -104,3 +104,36 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+/* Container layout for cards side by side */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+/* Entry animation: upward + fade in */
+.card {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: riseIn 1s ease forwards;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
