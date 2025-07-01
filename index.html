@@ -4,77 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>InsightMatrix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
     body {
-      height: 100vh;
-      background-image: url('background.png'); /* Rename your uploaded image to background.png */
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('899833a3-5f6d-4a35-8754-84fef0520af9.png') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
       color: #ffffff;
+    }
+    header, footer {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 15px 40px;
       display: flex;
-      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .sidebar {
-      width: 30%;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
     }
-
-    .sidebar img {
-      width: 100px;
-      margin-bottom: 20px;
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
     }
-
-    .sidebar h1 {
-      font-size: 2em;
-      color: #00f7ff;
+    nav a:hover {
+      color: #00d1ff;
     }
-
     .content {
-      width: 70%;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 50px;
+      backdrop-filter: blur(8px);
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      border-color: #00d1ff;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #00d1ff;
+    }
+    footer {
       justify-content: center;
-    }
-
-    .content h2 {
-      font-size: 1.8em;
-      color: #00f7ff;
-      margin-bottom: 15px;
-    }
-
-    .content p {
-      font-size: 1.1em;
-      margin-bottom: 25px;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img src="logo.png" alt="InsightMatrix Logo">
-    <h1>InsightMatrix</h1>
-  </div>
+  <header>
+    <div class="logo">InsightMatrix</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Projects</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Resources</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-  <div class="content">
-    <h2>Web Development</h2>
-    <p>Build responsive, scalable websites using modern HTML, CSS, JavaScript, and backend tools.</p>
+  <main class="content">
+    <div class="card">
+      <h2><i class="fas fa-code"></i> Web Development</h2>
+      <p>HTML5, CSS3, JavaScript, React, responsive UI/UX design, and backend APIs for full-stack apps.</p>
+    </div>
+    <div class="card">
+      <h2><i class="fas fa-shield-alt"></i> Cybersecurity</h2>
+      <p>Protecting digital assets using penetration testing, malware analysis, and secure coding practices.</p>
+    </div>
+    <div class="card">
+      <h2><i class="fas fa-brain"></i> Data Science & AI</h2>
+      <p>Working on Python, machine learning, data visualization, and AI-based automation.</p>
+    </div>
+  </main>
 
-    <h2>Cybersecurity</h2>
-    <p>Explore security fundamentals, ethical hacking, threat mitigation, and real-world case studies.</p>
-
-    <h2>Data Science & AI</h2>
-    <p>Dive into machine learning, Python, data analytics, and intelligent systems.</p>
-  </div>
+  <footer>
+    &copy; 2025 InsightMatrix. All rights reserved.
+  </footer>
 </body>
 </html>
