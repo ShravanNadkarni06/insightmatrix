@@ -72,11 +72,42 @@ main {
   margin-bottom: 2rem;
 }
 
+.globe-holo-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .globe-3d-container {
   width: 350px;
   height: 350px;
   border-radius: 50%;
   overflow: hidden;
+  z-index: 1;
+}
+
+/* Holographic Ring */
+.hologram-ring {
+  width: 200px;
+  height: 200px;
+  margin-top: -30px;
+  border: 2px solid #00ffe5;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #00ffe5, inset 0 0 20px #00ffe5;
+  animation: rotateRing 5s linear infinite;
+  z-index: 0;
+  opacity: 0.6;
+  transform-origin: center;
+}
+
+@keyframes rotateRing {
+  0% {
+    transform: rotateX(60deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(60deg) rotateZ(360deg);
+  }
 }
 
 .about-section {
@@ -133,7 +164,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Animations */
+/* Animation classes */
 .hidden {
   opacity: 0;
   transform: translateY(30px);
