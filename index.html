@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Three.js and Globe.gl -->
+  <!-- 3D Globe Dependencies -->
   <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
   <script src="https://unpkg.com/globe.gl"></script>
 </head>
@@ -32,7 +32,10 @@
 
   <main>
     <section class="intro-section">
-      <div id="globeViz" class="globe-3d-container"></div>
+      <div class="globe-holo-wrapper">
+        <div id="globeViz" class="globe-3d-container"></div>
+        <div class="hologram-ring"></div>
+      </div>
       <div class="about-section">
         <h2>About InsightMatrix</h2>
         <p>
@@ -64,7 +67,7 @@
   </footer>
 
   <script>
-    // Typing animation for logo
+    // Logo typing animation
     const titleEl = document.querySelector('.logo span');
     const text = 'InsightMatrix';
     let i = 0;
@@ -75,7 +78,7 @@
       if (i === text.length) clearInterval(typeInterval);
     }, 100);
 
-    // Card fade-in on scroll
+    // Card animation on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -89,7 +92,7 @@
       observer.observe(card);
     });
 
-    // Scroll to top button
+    // Scroll-to-top button
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
     Object.assign(scrollBtn.style, {
@@ -115,10 +118,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Globe initialization
+    // Globe init
     window.addEventListener('DOMContentLoaded', () => {
-      const container = document.querySelector('.card-container');
-      setTimeout(() => container.classList.add('animated'), 500);
+      setTimeout(() => {
+        document.querySelector('.card-container').classList.add('animated');
+      }, 500);
 
       const world = Globe()(document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
@@ -130,7 +134,6 @@
         .height(350)
         .pointOfView({ lat: 20, lng: 80, altitude: 2 }, 0);
 
-      // Auto-rotate globe
       function animate() {
         requestAnimationFrame(animate);
         world.controls().autoRotate = true;
