@@ -63,6 +63,51 @@ main {
   gap: 2rem;
 }
 
+.intro-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.globe-3d-container {
+  width: 350px;
+  height: 350px;
+  position: relative;
+}
+
+#globeViz {
+  width: 100%;
+  height: 100%;
+}
+
+.about-section {
+  max-width: 500px;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffe5;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+}
+
 .card {
   background: rgba(0, 0, 0, 0.6);
   padding: 20px 30px;
@@ -70,16 +115,9 @@ main {
   width: 280px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  transition: all 0.6s ease;
+  transition: transform 0.3s;
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
 }
-.card-container.animated .card {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 
 .card:hover {
   transform: scale(1.03);
@@ -97,132 +135,4 @@ footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
-}
-/* Entrance animation */
-.hidden {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Container layout for cards side by side */
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding-top: 2rem;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.card-container.animated {
-  flex-direction: row;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* Entry animation: upward + fade in */
-
-.card:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.card:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.card:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-@keyframes riseIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* --- Cyber Globe + Intro Layout --- */
-.intro-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.cyber-globe-container {
-  width: 280px;
-  height: 280px;
-  position: relative;
-}
-
-.globe {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,229,0.2) 30%, transparent 70%);
-  border: 1px solid #00ffe5;
-  box-shadow: 0 0 25px #00ffe5;
-  animation: spin 8s linear infinite;
-  position: relative;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  background: #00ffe5;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.ring {
-  position: absolute;
-  border: 1px solid #00ffe5;
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-}
-
-.ring1 {
-  transform: rotateX(60deg);
-}
-.ring2 {
-  transform: rotateX(120deg);
-}
-.ring3 {
-  transform: rotateY(60deg);
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.about-section {
-  max-width: 500px;
-  color: #ddd;
-}
-
-.about-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #00ffe5;
-}
-
-.about-section p {
-  line-height: 1.5;
-  font-size: 1.1rem;
-  color: #ccc;
 }
