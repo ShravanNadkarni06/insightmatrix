@@ -93,12 +93,13 @@ main {
 }
 
 .globe-container {
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  box-shadow: 0 0 25px #00ffe5;
   border-radius: 50%;
-  box-shadow: 0 0 25px rgba(0, 255, 229, 0.5);
-  background-color: rgba(0, 0, 0, 0.2);
 }
+
 
 /* Cards Section */
 .card-container {
