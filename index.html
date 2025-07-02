@@ -119,11 +119,11 @@
     <!-- Inside your <script> after DOMContentLoaded -->
 window.addEventListener('DOMContentLoaded', () => {
   const globe = Globe()(document.getElementById('globeViz'))
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg') // original blue marble texture
+    .globeImageUrl('https://unpkg.com/three-globe@2.43.0/example/img/earth-night.jpg') // original blue marble texture
     .backgroundColor('rgba(0,0,0,0)')
     .showGraticules(true)
-    .width(400)
-    .height(400)
+    .width(500)
+    .height(500)
     .pointOfView({ lat: 20, lng: 0, altitude: 2 })
     .autoRotate(true)
     .autoRotateSpeed(0.5);
