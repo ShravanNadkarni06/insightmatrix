@@ -4,22 +4,21 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   font-family: 'Orbitron', sans-serif;
   background: url('background.png') no-repeat center center fixed;
   background-size: cover;
   color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
+/* Header */
 header {
-  background-color: #000;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -28,9 +27,14 @@ header {
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   font-size: 1.2rem;
   font-weight: bold;
-  gap: 10px;
+}
+
+.logo-icon {
+  height: 30px;
+  width: 30px;
 }
 
 nav ul {
@@ -50,6 +54,7 @@ nav a:hover {
   color: #00ffe5;
 }
 
+/* Main Content */
 main {
   flex: 1;
   padding: 2rem;
@@ -58,20 +63,19 @@ main {
   gap: 2rem;
 }
 
+/* Intro Section (Globe + About) */
 .intro-section {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
-  align-items: flex-start; /* <-- this changed from center */
-  gap: 2rem;
+  gap: 3rem;
   margin-top: 2rem;
-  padding: 1rem 2rem;
 }
-
 
 .about-section {
   max-width: 500px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Share Tech', sans-serif;
 }
 
 .about-section h2 {
@@ -82,15 +86,50 @@ main {
 
 .about-section p {
   font-size: 1.1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #ccc;
 }
 
-.globe-3d-container iframe {
+/* 3D Globe Container */
+.globe-holo-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.globe-3d-container {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 255, 229, 0.4);
 }
 
+/* Hologram Ring */
+.hologram-ring {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(60deg);
+  width: 200px;
+  height: 200px;
+  border: 2px solid #00ffe5;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #00ffe5, inset 0 0 20px #00ffe5;
+  animation: rotateRing 6s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes rotateRing {
+  0% {
+    transform: translateX(-50%) rotateX(60deg) rotateZ(0deg);
+  }
+  100% {
+    transform: translateX(-50%) rotateX(60deg) rotateZ(360deg);
+  }
+}
+
+/* Card Section */
 .card-container {
   display: flex;
   justify-content: center;
@@ -109,6 +148,7 @@ main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s;
   text-align: center;
+  color: #ffffff;
 }
 
 .card:hover {
@@ -121,6 +161,11 @@ main {
   color: #00ffe5;
 }
 
+.card p {
+  color: #ccc;
+}
+
+/* Footer */
 footer {
   background-color: #000;
   color: #ccc;
@@ -129,12 +174,13 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Reveal animations */
+/* Scroll reveal animation */
 .hidden {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
+
 .show {
   opacity: 1;
   transform: translateY(0);
