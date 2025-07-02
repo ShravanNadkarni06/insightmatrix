@@ -29,25 +29,27 @@
   </header>
 
   <main>
-    <section class="intro-section">
-      <div class="about-section">
-        <h2>About InsightMatrix</h2>
-        <p>
-          InsightMatrix is a dynamic platform at the intersection of Artificial Intelligence, Web Development, and Cybersecurity.
-          Designed for tech enthusiasts, learners, and innovators, we bridge the gap between knowledge and real-world application.
-          Whether you're diving into Python, building secure apps, or exploring machine learning, InsightMatrix empowers you with
-          tutorials, resources, and future-ready projects.
-        </p>
-      </div>
-      <div class="globe-3d-container">
-        <div id="globeViz"></div>
-      </div>
-    </section>
+    <div class="main-content-wrapper">
+      <section class="intro-section">
+        <div class="about-section">
+          <h2>About InsightMatrix</h2>
+          <p>
+            InsightMatrix is a dynamic platform at the intersection of Artificial Intelligence, Web Development, and Cybersecurity.
+            Designed for tech enthusiasts, learners, and innovators, we bridge the gap between knowledge and real-world application.
+            Whether you're diving into Python, building secure apps, or exploring machine learning, InsightMatrix empowers you with
+            tutorials, resources, and future-ready projects.
+          </p>
+        </div>
+      </section>
 
-    <div class="card-container animated">
-      <div class="card"><h2>DATA SCIENCE & AI</h2></div>
-      <div class="card"><h2>CYBERSECURITY</h2></div>
-      <div class="card"><h2>WEB DEVELOPMENT</h2></div>
+      <div class="card-and-globe-container animated">
+        <div class="globe-3d-container">
+          <div id="globeViz"></div>
+        </div>
+        <div class="card"><h2>DATA SCIENCE & AI</h2></div>
+        <div class="card"><h2>CYBERSECURITY</h2></div>
+        <div class="card"><h2>WEB DEVELOPMENT</h2></div>
+      </div>
     </div>
   </main>
 
@@ -83,6 +85,13 @@
       observer.observe(card);
     });
 
+    // Observe the globe container as well for animation if desired
+    const globeContainer = document.querySelector('.globe-3d-container');
+    if (globeContainer) {
+      globeContainer.classList.add('hidden');
+      observer.observe(globeContainer);
+    }
+
     // Scroll to top
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
@@ -98,6 +107,7 @@
       fontWeight: 'bold',
       cursor: 'pointer',
       display: 'none',
+      zIndex: '1000', // Ensure it's above other content
     });
     document.body.appendChild(scrollBtn);
 
@@ -108,13 +118,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ✅ FIXED: Realistic blue Earth and smooth rotation
-// ✅ FIXED: Realistic blue Earth and smooth rotation
+    // Globe.gl Initialization
     window.addEventListener('DOMContentLoaded', () => {
       const globeVizEl = document.getElementById('globeViz');
-      const containerEl = globeVizEl.parentElement; // Get the parent container
+      const containerEl = globeVizEl.parentElement; // This now correctly targets '.globe-3d-container'
 
-      // Get computed styles of the container to determine actual size
+      // Get computed dimensions of the container for accurate sizing
       const containerWidth = containerEl.offsetWidth;
       const containerHeight = containerEl.offsetHeight;
 
@@ -122,15 +131,13 @@
         .globeImageUrl('https://unpkg.com/three-globe@2.43.0/example/img/earth-night.jpg')
         .backgroundColor('rgba(0,0,0,0)')
         .showGraticules(true)
-        .pointOfView({ lat: 20, lng: 0, altitude: 2 })
+        .pointOfView({ lat: 30, lng: 0, altitude: 2 })
         .autoRotate(true)
         .autoRotateSpeed(0.8)
         .width(containerWidth) // Set globe width to container's width
         .height(containerHeight); // Set globe height to container's height
 
-      // This setTimeout might still be useful as a fallback or for initial sizing,
-      // but if the above `width()` and `height()` calls are effective, it might be less critical.
-      // Keeping it for robustness if there are subtle timing issues.
+      // Robust check and resize after a short delay
       setTimeout(() => {
         const currentContainerWidth = containerEl.offsetWidth;
         const currentContainerHeight = containerEl.offsetHeight;
@@ -139,9 +146,15 @@
             globe.height(currentContainerHeight);
         }
       }, 100);
+
+      // Optional: Add a resize listener for better responsiveness if globe container size ever changes dynamically
+      // window.addEventListener('resize', () => {
+      //   const resizedWidth = containerEl.offsetWidth;
+      //   const resizedHeight = containerEl.offsetHeight;
+      //   globe.width(resizedWidth);
+      //   globe.height(resizedHeight);
+      // });
     });
-
-
   </script>
 </body>
 </html>
