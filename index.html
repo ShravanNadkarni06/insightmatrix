@@ -111,9 +111,10 @@
     });
 
     // ✅ FIXED: Realistic blue Earth and smooth rotation
-   window.addEventListener('DOMContentLoaded', () => {
-  const globeContainer = document.getElementById('globeViz');
-  const globe = Globe()(globeContainer)
+window.addEventListener('DOMContentLoaded', () => {
+  const globeEl = document.getElementById('globeViz');
+
+  const globe = Globe()(globeEl)
     .globeImageUrl('https://unpkg.com/three-globe@2.43.0/example/img/earth-night.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .showGraticules(true)
@@ -121,14 +122,13 @@
     .autoRotate(true)
     .autoRotateSpeed(0.8);
 
-  // Force render size on globe's renderer once canvas is ready
+  // Force canvas resize exactly once the canvas is mounted
   setTimeout(() => {
-    const width = globeContainer.offsetWidth;
-    const height = globeContainer.offsetHeight;
-    globe.width(width);
-    globe.height(height);
-  }, 50);
+    globe.width(400);
+    globe.height(400);
+  }, 100); // wait for canvas mount (100ms is safe)
 });
+
 
 
   </script>
