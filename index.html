@@ -70,14 +70,20 @@
   <!-- JS: Typing Effect + Scroll Button + 3D Globe -->
   <script>
     const titleEl = document.querySelector('.logo span');
-    const text = 'InsightMatrix';
-    let i = 0;
-    titleEl.textContent = '';
-    const typeInterval = setInterval(() => {
+const text = 'InsightMatrix';
+
+if (titleEl && text) {
+  let i = 0;
+  titleEl.textContent = '';
+  const typeInterval = setInterval(() => {
+    if (i < text.length) {
       titleEl.textContent += text[i];
       i++;
-      if (i === text.length) clearInterval(typeInterval);
-    }, 100);
+    } else {
+      clearInterval(typeInterval);
+    }
+  }, 100);
+}
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
