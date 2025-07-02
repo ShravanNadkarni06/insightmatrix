@@ -29,28 +29,26 @@
   </header>
 
   <main>
-    <div class="main-content-wrapper">
-      <section class="intro-section">
-        <div class="about-section">
-          <h2>About InsightMatrix</h2>
-          <p>
-            InsightMatrix is a dynamic platform at the intersection of Artificial Intelligence, Web Development, and Cybersecurity.
-            Designed for tech enthusiasts, learners, and innovators, we bridge the gap between knowledge and real-world application.
-            Whether you're diving into Python, building secure apps, or exploring machine learning, InsightMatrix empowers you with
-            tutorials, resources, and future-ready projects.
-          </p>
-        </div>
-      </section>
-
-      <div class="card-and-globe-container animated">
-        <div class="globe-3d-container">
-          <div id="globeViz"></div>
-        </div>
-        <div class="card"><h2>DATA SCIENCE & AI</h2></div>
-        <div class="card"><h2>CYBERSECURITY</h2></div>
-        <div class="card"><h2>WEB DEVELOPMENT</h2></div>
+    <section class="intro-section">
+      <div class="about-section">
+        <h2>About InsightMatrix</h2>
+        <p>
+          InsightMatrix is a dynamic platform at the intersection of Artificial Intelligence, Web Development, and Cybersecurity.
+          Designed for tech enthusiasts, learners, and innovators, we bridge the gap between knowledge and real-world application.
+          Whether you're diving into Python, building secure apps, or exploring machine learning, InsightMatrix empowers you with
+          tutorials, resources, and future-ready projects.
+        </p>
       </div>
-    </div>
+      <div class="globe-3d-container">
+        <div id="globeViz"></div>
+      </div>
+    </section>
+
+    <section class="card-container animated">
+      <div class="card"><h2>DATA SCIENCE & AI</h2></div>
+      <div class="card"><h2>CYBERSECURITY</h2></div>
+      <div class="card"><h2>WEB DEVELOPMENT</h2></div>
+    </section>
   </main>
 
   <footer>
@@ -107,7 +105,7 @@
       fontWeight: 'bold',
       cursor: 'pointer',
       display: 'none',
-      zIndex: '1000', // Ensure it's above other content
+      zIndex: '1000',
     });
     document.body.appendChild(scrollBtn);
 
@@ -121,7 +119,7 @@
     // Globe.gl Initialization
     window.addEventListener('DOMContentLoaded', () => {
       const globeVizEl = document.getElementById('globeViz');
-      const containerEl = globeVizEl.parentElement; // This now correctly targets '.globe-3d-container'
+      const containerEl = globeVizEl.parentElement; // This correctly targets '.globe-3d-container'
 
       // Get computed dimensions of the container for accurate sizing
       const containerWidth = containerEl.offsetWidth;
@@ -146,14 +144,6 @@
             globe.height(currentContainerHeight);
         }
       }, 100);
-
-      // Optional: Add a resize listener for better responsiveness if globe container size ever changes dynamically
-      // window.addEventListener('resize', () => {
-      //   const resizedWidth = containerEl.offsetWidth;
-      //   const resizedHeight = containerEl.offsetHeight;
-      //   globe.width(resizedWidth);
-      //   globe.height(resizedHeight);
-      // });
     });
   </script>
 </body>
