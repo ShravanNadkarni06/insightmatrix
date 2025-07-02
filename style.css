@@ -33,11 +33,6 @@ header {
   gap: 10px;
 }
 
-.logo-icon {
-  height: 30px;
-  width: 30px;
-}
-
 nav ul {
   list-style: none;
   display: flex;
@@ -65,56 +60,16 @@ main {
 
 .intro-section {
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: 3rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 2rem;
-}
-
-
-.globe-holo-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.globe-3d-container {
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* Holographic Ring */
-.hologram-ring {
-  width: 200px;
-  height: 200px;
-  margin-top: -30px;
-  border: 2px solid #00ffe5;
-  border-radius: 50%;
-  box-shadow: 0 0 30px #00ffe5, inset 0 0 20px #00ffe5;
-  animation: rotateRing 5s linear infinite;
-  z-index: 0;
-  opacity: 0.6;
-  transform-origin: center;
-}
-
-@keyframes rotateRing {
-  0% {
-    transform: rotateX(60deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(60deg) rotateZ(360deg);
-  }
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .about-section {
   max-width: 500px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .about-section h2 {
@@ -127,6 +82,11 @@ main {
   font-size: 1.1rem;
   line-height: 1.5;
   color: #ccc;
+}
+
+.globe-3d-container iframe {
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(0, 255, 229, 0.4);
 }
 
 .card-container {
@@ -167,33 +127,13 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Animation classes */
+/* Reveal animations */
 .hidden {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
-
 .show {
   opacity: 1;
   transform: translateY(0);
-}
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
-
-.about-paragraph {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #ddd;
-  margin-top: 0.5rem;
-}
-
-.intro-section {
-  display: flex;
-  flex-direction: column; /* Stack vertically */
-  align-items: flex-start; /* Align to the left */
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
 }
