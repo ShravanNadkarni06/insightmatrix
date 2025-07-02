@@ -40,7 +40,7 @@
         </p>
       </div>
       <div class="globe-3d-container">
-        <div id="globeViz" style="width: 400px; height: 400px;"></div>
+        <div id="globeViz"></div>
       </div>
     </section>
 
@@ -117,8 +117,8 @@
 
     // Globe rendering
     window.addEventListener('DOMContentLoaded', () => {
-      const globe = Globe()(document.getElementById('globeViz'))
-        .globeImageUrl('https://cdn.jsdelivr.net/gh/abhishek-kumar-yadav/assets@main/earth-blue-marble.jpg')
+      Globe()(document.getElementById('globeViz'))
+        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg') // <- original blue-dark globe
         .backgroundColor('rgba(0,0,0,0)')
         .showGraticules(true)
         .width(400)
