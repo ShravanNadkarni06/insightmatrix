@@ -152,3 +152,8 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Globe Canvas Styling */
+#globeViz canvas {
+  filter: hue-rotate(180deg) brightness(1.3);
+}
