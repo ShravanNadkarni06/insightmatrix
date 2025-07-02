@@ -40,7 +40,7 @@
         </p>
       </div>
       <div class="globe-3d-container">
-        <div id="globeViz"></div>
+        <div id="globeViz" style="width: 400px; height: 400px;"></div>
       </div>
     </section>
 
@@ -92,7 +92,7 @@
       observer.observe(card);
     });
 
-    // Scroll-to-top
+    // Scroll-to-top button
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
     scrollBtn.style.position = 'fixed';
@@ -115,10 +115,10 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Globe rendering
+    // ✅ Load realistic BLUE globe using Globe.gl
     window.addEventListener('DOMContentLoaded', () => {
       Globe()(document.getElementById('globeViz'))
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg') // <- original blue-dark globe
+        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
         .backgroundColor('rgba(0,0,0,0)')
         .showGraticules(true)
         .width(400)
