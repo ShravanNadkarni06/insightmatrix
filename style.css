@@ -62,32 +62,29 @@ main {
   flex: 1;
   padding: 2rem;
   display: flex;
-  flex-direction: column; /* Still column for the overall main content wrapper */
-  align-items: center; /* Center the wrapper horizontally within main */
-  gap: 3rem;
+  flex-direction: column; /* Stacks sections (intro and cards) vertically */
+  align-items: center; /* Centers content horizontally within main */
+  gap: 3rem; /* Space between the intro section and the card section */
+  max-width: 1400px; /* Max width for the entire main content area */
+  margin: 0 auto; /* Center the main content area itself */
+  width: 100%; /* Ensure it takes full width of screen if narrow */
 }
 
-/* New wrapper to control overall main content flow */
-.main-content-wrapper {
-  display: flex;
-  flex-direction: column; /* Default: Stack intro section and cards/globe section */
-  gap: 3rem; /* Space between sections */
-  width: 100%; /* Take full width of main's padding */
-  max-width: 1200px; /* Max width for content to prevent it from stretching too wide */
-  align-items: center; /* Center flex items horizontally within this wrapper */
-}
-
-/* Intro Section: About (now without globe, focusing on text) */
+/* Intro Section: About + Globe (side-by-side on desktop) */
 .intro-section {
-  display: flex; /* Helps center its child (`about-section`) */
-  justify-content: center;
-  width: 100%; /* Ensure it takes full available width within wrapper */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to next line on smaller screens */
+  justify-content: center; /* Center content horizontally */
+  align-items: flex-start; /* Align items to the top (important for different heights) */
+  gap: 3rem; /* Space between about section and globe */
+  width: 100%; /* Take full width of parent (main) */
 }
 
 .about-section {
-  max-width: 700px; /* Control max width of the text block */
+  max-width: 480px; /* Original width for about text */
   font-family: 'Share Tech', sans-serif;
-  text-align: center; /* Center text for solo section on smaller screens */
+  flex-shrink: 0; /* Prevent it from shrinking too much */
+  text-align: left; /* Default alignment */
 }
 
 .about-section h2 {
@@ -106,7 +103,7 @@ main {
 .globe-3d-container {
   width: 400px; /* Explicit width */
   height: 400px; /* Explicit height */
-  margin: 0 auto; /* Keep auto margin for horizontal centering within flex item */
+  /* margin: 0 auto; removed as flex container handles centering */
   border-radius: 50%;
   box-shadow: 0 0 25px #00ffe5;
   overflow: hidden; /* Crucial for clipping the globe */
@@ -117,7 +114,6 @@ main {
 }
 
 #globeViz {
-  /* Let JS handle exact dimensions based on parent's computed styles */
   width: 100%; /* Fill its container */
   height: 100%; /* Fill its container */
   border-radius: 50%; /* Apply border-radius directly to #globeViz for better clipping */
@@ -128,15 +124,15 @@ main {
   object-fit: contain; /* or cover, depending on desired globe rendering */
 }
 
-/* Cards Section - Now includes the Globe */
-.card-and-globe-container {
+/* Cards Section */
+.card-container {
   display: flex;
-  justify-content: center; /* Center items when they wrap */
-  align-items: center; /* Vertically align globe with cards */
+  justify-content: center; /* Center cards horizontally */
+  align-items: stretch; /* Make cards stretch to same height */
   gap: 2rem;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  padding-top: 2rem;
-  width: 100%; /* Ensure it takes full available width within wrapper */
+  flex-wrap: wrap; /* Allow cards to wrap to next line */
+  padding-top: 2rem; /* Add some space from the section above */
+  width: 100%; /* Take full width of parent (main) */
 }
 
 .card {
@@ -148,6 +144,7 @@ main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s;
   text-align: center;
+  flex-shrink: 0; /* Prevent cards from shrinking */
 }
 
 .card:hover {
@@ -185,68 +182,64 @@ footer {
 
 /* For screens larger than 1024px (desktop) */
 @media (min-width: 1024px) {
-  .main-content-wrapper {
-    flex-direction: row; /* Layout intro section and cards/globe side-by-side */
-    justify-content: space-around; /* Distribute space between sections */
-    align-items: flex-start; /* Align items to the top */
-  }
-
   .intro-section {
-    flex: 1; /* Allow intro section to grow */
-    max-width: 500px; /* Control about section width */
-    justify-content: flex-start; /* Align content to the left within its flex container */
+    flex-wrap: nowrap; /* Prevent wrap, keep side-by-side */
+    justify-content: space-around; /* Distribute space */
+    align-items: center; /* Vertically center about section and globe */
   }
 
   .about-section {
-    text-align: left; /* Re-align text for wider layout */
+    flex-grow: 1; /* Allow about section to take remaining space */
+    max-width: 550px; /* Adjust max width as needed */
   }
 
-  .card-and-globe-container {
-    flex: 2; /* Allow this container to take more space */
-    max-width: 800px; /* Control its max width */
-    justify-content: flex-end; /* Push items to the right within this container */
-    /* This setup will place the globe (first in HTML) to the left of the cards */
+  .globe-3d-container {
+    margin: 0; /* Remove auto margin when in row layout */
+  }
+
+  .card-container {
+    justify-content: center; /* Ensure cards are centered below */
   }
 }
 
-/* For screens larger than 768px (tablets and small desktops) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .main-content-wrapper {
-    flex-direction: column; /* Stack sections */
+/* For screens smaller than 1024px (tablets and mobile) */
+@media (max-width: 1023px) {
+  .intro-section {
+    flex-direction: column; /* Stack about section and globe */
+    align-items: center; /* Center them when stacked */
   }
 
-  .card-and-globe-container {
-    justify-content: center; /* Center items for 2-column layout */
+  .about-section {
+    max-width: 80%; /* Adjust max width for readability on smaller screens */
+    text-align: center; /* Center text when stacked */
+  }
+
+  .globe-3d-container {
+    width: 350px; /* Adjust globe size for smaller screens */
+    height: 350px;
+  }
+
+  .card-container {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    align-items: center;
+  }
+
+  .card {
+    width: 90%; /* Make cards wider on smaller screens */
+    max-width: 300px; /* Max width for mobile cards */
   }
 }
 
-/* For screens smaller than 768px (mobile) */
-@media (max-width: 767px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
+/* Further adjustment for very small screens */
+@media (max-width: 500px) {
   main {
     padding: 1rem;
   }
-  .about-section {
-    font-size: 1rem;
-  }
-  .card-and-globe-container {
-    flex-direction: column; /* Stack globe and cards vertically */
-    align-items: center;
-  }
-  .card {
-    width: 90%; /* Make cards take more width on small screens */
-    max-width: 300px;
-  }
   .globe-3d-container {
-    width: 300px; /* Adjust globe size for smaller screens */
-    height: 300px;
+    width: 280px;
+    height: 280px;
+  }
+  .about-section p {
+    font-size: 1rem;
   }
 }
