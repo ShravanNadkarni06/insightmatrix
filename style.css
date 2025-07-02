@@ -98,20 +98,19 @@ main {
   margin: 0 auto;
   border-radius: 50%;
   box-shadow: 0 0 25px #00ffe5;
-  overflow: hidden; /* Clip the canvas to the circle */
+  overflow: hidden;           /* Clip overflowing parts */
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-/* Ensure the globe canvas fits and is centered */
 #globeViz canvas {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
   border-radius: 50%;
 }
+
 
 
 
