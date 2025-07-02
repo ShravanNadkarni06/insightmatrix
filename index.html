@@ -4,12 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>InsightMatrix</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-
-  <!-- 3D Globe Dependencies -->
-  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
-  <script src="https://unpkg.com/globe.gl"></script>
 </head>
 <body>
   <header>
@@ -31,33 +27,50 @@
   </header>
 
   <main>
-  <section class="intro-section">
-    <div class="about-section">
-      <h2>About InsightMatrix</h2>
-      <p class="about-paragraph">
-        InsightMatrix is your portal into the worlds of AI, Web Development, and Cybersecurity — combining cutting-edge knowledge with practical skills to power the future. Our mission is to make complex technologies accessible and actionable for learners, developers, and tech enthusiasts across the globe.
-      </p>
-    </div>
-    <div class="globe-3d-container">
-      <div class="hologram"></div>
-      <iframe
-        src="https://earth.nullschool.net/embed.html"
-        frameborder="0"
-        width="300"
-        height="300"
-        style="border-radius: 50%; overflow: hidden"
-      ></iframe>
-    </div>
-  </section>
-</main>
+    <!-- ABOUT & GLOBE SECTION -->
+    <section class="intro-section">
+      <div class="about-section">
+        <h2>About InsightMatrix</h2>
+        <p>
+          InsightMatrix is your portal into the worlds of Artificial Intelligence,
+          Cybersecurity, and Web Development. We blend practical skills with future-driven
+          innovations to empower tech enthusiasts, learners, and innovators across the globe.
+        </p>
+      </div>
+      <div class="globe-3d-container">
+        <iframe
+          src="https://earth.nullschool.net/embed.html"
+          frameborder="0"
+          width="300"
+          height="300"
+          style="border-radius: 50%; overflow: hidden"
+        ></iframe>
+      </div>
+    </section>
 
+    <!-- THREE SECTIONS -->
+    <div class="card-container animated">
+      <div class="card">
+        <h2>🧠 Data Science & AI</h2>
+        <p>Smart insights with Python & ML...</p>
+      </div>
+      <div class="card">
+        <h2>🔐 Cybersecurity</h2>
+        <p>Ethical hacking, malware analysis...</p>
+      </div>
+      <div class="card">
+        <h2>💻 Web Development</h2>
+        <p>HTML5, CSS3, JS, React, APIs...</p>
+      </div>
+    </div>
+  </main>
 
   <footer>
     <p>&copy; 2025 InsightMatrix. All rights reserved.</p>
   </footer>
 
+  <!-- JavaScript -->
   <script>
-    // Logo typing animation
     const titleEl = document.querySelector('.logo span');
     const text = 'InsightMatrix';
     let i = 0;
@@ -68,7 +81,6 @@
       if (i === text.length) clearInterval(typeInterval);
     }, 100);
 
-    // Card animation on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -82,22 +94,19 @@
       observer.observe(card);
     });
 
-    // Scroll-to-top button
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
-    Object.assign(scrollBtn.style, {
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      padding: '10px',
-      border: 'none',
-      borderRadius: '50%',
-      background: '#00ffe5',
-      color: '#000',
-      fontWeight: 'bold',
-      cursor: 'pointer',
-      display: 'none'
-    });
+    scrollBtn.style.position = 'fixed';
+    scrollBtn.style.bottom = '20px';
+    scrollBtn.style.right = '20px';
+    scrollBtn.style.padding = '10px';
+    scrollBtn.style.border = 'none';
+    scrollBtn.style.borderRadius = '50%';
+    scrollBtn.style.background = '#00ffe5';
+    scrollBtn.style.color = '#000';
+    scrollBtn.style.fontWeight = 'bold';
+    scrollBtn.style.cursor = 'pointer';
+    scrollBtn.style.display = 'none';
     document.body.appendChild(scrollBtn);
 
     window.addEventListener('scroll', () => {
@@ -108,29 +117,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Globe init
     window.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.card-container');
       setTimeout(() => {
-        document.querySelector('.card-container').classList.add('animated');
+        container.classList.add('animated');
       }, 500);
-
-      const world = Globe()(document.getElementById('globeViz'))
-        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
-        .backgroundColor('rgba(0,0,0,0)')
-        .showAtmosphere(true)
-        .atmosphereColor('#00ffe5')
-        .atmosphereAltitude(0.25)
-        .width(350)
-        .height(350)
-        .pointOfView({ lat: 20, lng: 80, altitude: 2 }, 0);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 0.8;
-        world.controls().update();
-      }
-      animate();
     });
   </script>
 </body>
